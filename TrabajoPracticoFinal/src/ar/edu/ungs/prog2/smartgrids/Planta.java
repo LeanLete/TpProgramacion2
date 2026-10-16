@@ -1,10 +1,10 @@
 package ar.edu.ungs.prog2.smartgrids;
 
-import static org.junit.Assert.assertThrows;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
 
 public abstract  class Planta {
@@ -13,12 +13,14 @@ public abstract  class Planta {
 	private String direccion;
 	private double capacidadMaxgen;
 	private boolean isActiva;
-	private LocalDate fechaPuestaEnFuncionamiento;
+	private LocalDateTime fechaPuestaEnFuncionamiento;
 	private ArrayList<PeriodoDeInactividad>historialDeInactividad;
-	/// private registrosMonitoreo  que estructura conviene usar HashMap.id, registros o fechaHora y Registros objeto
+	private HashMap<LocalDateTime, RegistroMonitoreo> registros;
 	
-	public Planta(int id, String nombre, String direccion, double capacidadMaxgen, boolean isActiva,
-			LocalDate fechaPuestaEnFuncionamiento, ArrayList<PeriodoDeInactividad> historialDeInactividad) {
+	
+	//La planta nace activa y con el historial vacio.
+	public Planta(int id, String nombre, String direccion, double capacidadMaxgen,
+			LocalDateTime fechaPuestaEnFuncionamiento) {
 		
 		if(nombre==null || nombre.isEmpty()) {
 			throw new RuntimeException("El nombre es un campo obligatorio no debe estar vacio");
@@ -42,30 +44,37 @@ public abstract  class Planta {
 		this.fechaPuestaEnFuncionamiento = fechaPuestaEnFuncionamiento;
 		this.historialDeInactividad = new ArrayList<PeriodoDeInactividad>();
 	}
+	
+	public abstract double calcularCuotaMinima();
+	
+	
+	public abstract boolean cumplioCuotaMinima(RegistroMonitoreo registros);
+	// recibe el registro para saber que hora evaluar
+	
+	
+	public void actualizarEstado(boolean nuevoEstado,LocalDateTime fechaHora) {
+		if(nuevoEstado== isActiva) {
+			throw new RuntimeException("La planta ya se encuentra en ese estado");
+		}
+		
+		if(fechaHora == null) {
+			throw new RuntimeException("La fecha y la hora son obligatorios");
+			
+		}
+		if(nuevoEstado) {
+			historialDeInactividad.get(historialDeInactividad.size()-1).cerrar(fechaHora);
+		}
+		else{
+			PeriodoDeInactividad nuevoRegistro= new PeriodoDeInactividad(fechaHora);
+			historialDeInactividad.add(nuevoRegistro);
+		}
+		isActiva =nuevoEstado;
+	}
+	
+	
+	
+	
 
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	
 	//---------------Getters---------
 	public int getId() {
@@ -88,7 +97,7 @@ public abstract  class Planta {
 		return isActiva;
 	}
 
-	public LocalDate getFechaPuestaEnFuncionamiento() {
+	public LocalDateTime getFechaPuestaEnFuncionamiento() {
 		return fechaPuestaEnFuncionamiento;
 	}
 
