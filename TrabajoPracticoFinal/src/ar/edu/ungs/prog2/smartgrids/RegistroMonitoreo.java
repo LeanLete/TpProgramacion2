@@ -6,12 +6,12 @@ public class RegistroMonitoreo {
 	private int id;//chequear 
 	private int idPlanta;//chequear
 	private LocalDateTime fechaHora;
-	private double  energiaGeneradaPorHora;
+	private double  energiaGenerada;
 	private int cantIncidencias;
-	public RegistroMonitoreo( LocalDateTime fechaHora, double energiaGeneradaPorHora,
+	public RegistroMonitoreo( LocalDateTime fechaHora, double energiaGenerada,
 			int cantIncidencias) {
 		
-		if(energiaGeneradaPorHora<0) {
+		if(energiaGenerada<0) {
 			throw new RuntimeException("La energia generada por hora debe ser mayor a cero");
 		}
 		if(cantIncidencias<0) {
@@ -24,7 +24,7 @@ public class RegistroMonitoreo {
 		this.id = id;////chequear
 		this.idPlanta = idPlanta;///// chequear
 		this.fechaHora = fechaHora;
-		this.energiaGeneradaPorHora = energiaGeneradaPorHora;
+		this.energiaGenerada = energiaGenerada;
 		this.cantIncidencias = cantIncidencias;
 	}
 	
@@ -38,8 +38,8 @@ public class RegistroMonitoreo {
 	public LocalDateTime getFechaHora() {
 		return fechaHora;
 	}
-	public double getEnergiaGeneradaPorHora() {
-		return energiaGeneradaPorHora;
+	public double getEnergiaGenerada() {
+		return energiaGenerada;
 	}
 	public int getCantIncidencias() {
 		return cantIncidencias;

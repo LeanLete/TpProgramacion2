@@ -48,7 +48,7 @@ public abstract class PlantaRenovable extends Planta {
 
 	@Override
 	public boolean cumplioCuotaMinima(RegistroMonitoreo registro) {
-		return registro.getEnergiaGenerada() >= calcularCuotaMinima();	}
+		return registro.getEnergiaGenerada()>= calcularCuotaMinima();	}
 
 		
 		
