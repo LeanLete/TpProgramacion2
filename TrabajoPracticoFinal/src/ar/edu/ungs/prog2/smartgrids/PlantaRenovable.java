@@ -1,6 +1,6 @@
 package ar.edu.ungs.prog2.smartgrids;
 
-import java.lang.classfile.Superclass;
+
 import java.time.LocalDateTime;
 
 public abstract class PlantaRenovable extends Planta {
@@ -54,5 +54,4 @@ public abstract class PlantaRenovable extends Planta {
 		
 		
 }
-
 
