@@ -12,11 +12,11 @@ public class PlantaEolica extends PlantaRenovable{
 	private double alturaTorres;
 	private double velocidadMinimaViento;
 	
-	public PlantaEolica(int id, String nombre, String direccion, double capacidadMaxgen,
+	public PlantaEolica( String nombre, String direccion, double capacidadMaxgen,
 			LocalDateTime fechaPuestaEnFuncionamiento, String fuentePrimaria, double eficienciaPromedio,
 			int cantAerogeneradores, double alturaTorres, double velocidadMinimaViento) {
 		
-		super(id, nombre, direccion, capacidadMaxgen, fechaPuestaEnFuncionamiento, fuentePrimaria, eficienciaPromedio);
+		super( nombre, direccion, capacidadMaxgen, fechaPuestaEnFuncionamiento, fuentePrimaria, eficienciaPromedio);
 		
 		if(cantAerogeneradores <=0 ||  cantAerogeneradores > MAX_AEROGENERADORES) {
 			throw new RuntimeException("La cantidad de aerogeneradores debe estar entre 1 y " + MAX_AEROGENERADORES);

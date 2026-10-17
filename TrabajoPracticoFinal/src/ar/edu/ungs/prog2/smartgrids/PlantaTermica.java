@@ -7,10 +7,10 @@ public class PlantaTermica extends PlantaNoRenovable {
 	private static final double MAX_EMISION_CO2 = 1000;// 1 tonelada de co2.
 	private double objetivoEmisionCo2PorHora;
 
-	public PlantaTermica(int id, String nombre, String direccion, double capacidadMaxgen,
+	public PlantaTermica( String nombre, String direccion, double capacidadMaxgen,
 			LocalDateTime fechaPuestaEnFuncionamiento, String tipoCombustible, double capacidadAlmacenamiento,
 			double objetivoEmisionCo2PorHora) {
-		super(id, nombre, direccion, capacidadMaxgen, fechaPuestaEnFuncionamiento, tipoCombustible,
+		super( nombre, direccion, capacidadMaxgen, fechaPuestaEnFuncionamiento, tipoCombustible,
 				capacidadAlmacenamiento);
 		
 		if (objetivoEmisionCo2PorHora <= 0 || objetivoEmisionCo2PorHora > MAX_EMISION_CO2) {

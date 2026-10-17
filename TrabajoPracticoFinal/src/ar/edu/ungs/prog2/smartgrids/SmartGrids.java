@@ -1,27 +1,69 @@
 package ar.edu.ungs.prog2.smartgrids;
 
+import java.security.PrivateKey;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
 public class SmartGrids implements ISmartGrids {
 	
-	HashMap<String, Planta> plantas;
+	LinkedHashMap<String, Planta> plantas;
 
+
+
+	public SmartGrids() {
+		plantas=new LinkedHashMap<String, Planta>(); // LinkedHasmap para respetar el orden de insercion.
+	}
+
+
+	private String normalizar(String nombre) {
+		if (nombre ==null) {
+			throw new RuntimeException("El campo del nombre es obligatorio");
+		}
+		return nombre.toLowerCase().replaceAll("\\s+", "");	
+				}
+	/// pasa a minuscula el nombre y elimina los espacios
+	
+	
+	private Planta  buscarPlanta(String nombre) {
+		Planta planta = plantas.get(normalizar(nombre));
+		if(planta== null) {
+			throw new RuntimeException("El nombre "+ nombre +" no existe ");
+		}
+			return planta;
+		}
+	// busca la planta por nombre.
+	
+	private void guardarPlanta(Planta planta) {
+		String clave= normalizar(planta.getNombre());
+		if(plantas.containsKey(clave)) {
+			throw new RuntimeException("La Planta"+planta.getNombre()+ " ya existe");
+		}
+		plantas.put(clave, planta);
+		
+	}
+	// guarda la planta 
+	
+	
 	@Override
 	public void registrarPlantaSolar(String nombre, String direccion, double capacidadMaxima,
 			String fechaHoraPuestaEnFuncionamiento, String fuentePrimaria, double eficienciaPromedio,
 			double superficieCubierta, int cantidadPaneles, double horasRadiacionDiaria) {
-		// TODO Auto-generated method stub
 		
-
+		Planta solar= new PlantaSolar(nombre, direccion, capacidadMaxima, LocalDateTime.parse(fechaHoraPuestaEnFuncionamiento), fuentePrimaria, eficienciaPromedio, superficieCubierta, cantidadPaneles, horasRadiacionDiaria);
+		guardarPlanta(solar);
 	}
 
 	@Override
 	public void registrarPlantaEolica(String nombre, String direccion, double capacidadMaxima,
 			String fechaHoraPuestaEnFuncionamiento, String fuentePrimaria, double eficienciaPromedio,
 			int cantidadAerogeneradores, double alturaTorres, double velocidadMinimaViento) {
-		// TODO Auto-generated method stub
+		
+		Planta eolica= new PlantaEolica(nombre, direccion, capacidadMaxima, LocalDateTime.parse(fechaHoraPuestaEnFuncionamiento), fuentePrimaria, eficienciaPromedio, cantidadAerogeneradores,  alturaTorres,  velocidadMinimaViento);
+		guardarPlanta(eolica);
 
 	}
 
@@ -29,22 +71,26 @@ public class SmartGrids implements ISmartGrids {
 	public void registrarPlantaHidraulica(String nombre, String direccion, double capacidadMaxima,
 			String fechaHoraPuestaEnFuncionamiento, String fuentePrimaria, double eficienciaPromedio,
 			int cantidadTurbinas, double capacidadEmbalse) {
-		// TODO Auto-generated method stub
-
+		Planta hidraulica= new PlantaHidraulica(cantidadTurbinas, nombre, direccion, capacidadMaxima,  LocalDateTime.parse(fechaHoraPuestaEnFuncionamiento), fuentePrimaria, eficienciaPromedio, cantidadTurbinas, capacidadEmbalse);
+		guardarPlanta(hidraulica);
 	}
 
 	@Override
 	public void registrarPlantaTermica(String nombre, String direccion, double capacidadMaxima,
 			String fechaHoraPuestaEnFuncionamiento, String tipoCombustible, double objetivoEmisionesCo2PorHora,
 			double capacidadAlmacenamientoCombustible) {
-		// TODO Auto-generated method stub
-
+		Planta termica= new PlantaTermica(nombre, direccion, capacidadMaxima,LocalDateTime.parse(fechaHoraPuestaEnFuncionamiento) , tipoCombustible, capacidadAlmacenamientoCombustible, objetivoEmisionesCo2PorHora);
+		guardarPlanta(termica);
 	}
 
 	@Override
 	public List<String> consultarPlantas() {
-		// TODO Auto-generated method stub
-		return null;
+		List<String>lista= new ArrayList<String>();
+		for(Planta p:plantas.values()) {
+			lista.add(p.toString());
+		}
+		return lista; 
+		
 	}
 
 	@Override

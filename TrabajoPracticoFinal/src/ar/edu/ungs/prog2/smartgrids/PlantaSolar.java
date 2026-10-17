@@ -10,11 +10,11 @@ public class PlantaSolar extends PlantaRenovable {
 	
 	
 
-	public PlantaSolar(int id, String nombre, String direccion, double capacidadMaxgen,
+	public PlantaSolar(String nombre, String direccion, double capacidadMaxgen,
 			LocalDateTime fechaPuestaEnFuncionamiento, String fuentePrimaria, double eficienciaPromedio,
 			double superficieCubierta, int cantPaneles, double horasRadiacionDiaria) {
 		
-		super(id, nombre, direccion, capacidadMaxgen, fechaPuestaEnFuncionamiento, fuentePrimaria, eficienciaPromedio);
+		super(nombre, direccion, capacidadMaxgen, fechaPuestaEnFuncionamiento, fuentePrimaria, eficienciaPromedio);
 		
 		if(superficieCubierta<=0) {
 			throw new RuntimeException("La superficie cubierta no puede ser cero ni menor a cero");

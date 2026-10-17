@@ -10,9 +10,9 @@ public abstract class PlantaRenovable extends Planta {
 		
 		
 	
-	public PlantaRenovable(int id, String nombre, String direccion, double capacidadMaxgen,
+	public PlantaRenovable( String nombre, String direccion, double capacidadMaxgen,
 		LocalDateTime fechaPuestaEnFuncionamiento, String fuentePrimaria, double eficienciaPromedio) {
-		super(id, nombre, direccion, capacidadMaxgen, fechaPuestaEnFuncionamiento);
+		super( nombre, direccion, capacidadMaxgen, fechaPuestaEnFuncionamiento);
 		
 		if(fuentePrimaria ==null) {
 			throw new RuntimeException("La fuente primaria es obligatoria");

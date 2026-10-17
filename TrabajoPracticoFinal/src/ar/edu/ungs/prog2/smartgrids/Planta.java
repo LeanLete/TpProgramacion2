@@ -2,6 +2,7 @@ package ar.edu.ungs.prog2.smartgrids;
 
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -19,7 +20,7 @@ public abstract  class Planta {
 	
 	
 	//La planta nace activa y con el historial vacio.
-	public Planta(int id, String nombre, String direccion, double capacidadMaxgen,
+	public Planta(String nombre, String direccion, double capacidadMaxgen,
 			LocalDateTime fechaPuestaEnFuncionamiento) {
 		
 		if(nombre==null || nombre.isEmpty()) {
@@ -104,5 +105,22 @@ public abstract  class Planta {
 	public List<PeriodoDeInactividad> getHistorialDeInactividad() {
 	    return Collections.unmodifiableList(historialDeInactividad);
 	}
+
+	@Override
+	public String toString() {
+		StringBuilder sb = new StringBuilder();
+	    sb.append(nombre);
+	    sb.append(" (");
+	    if (isActiva) {
+	        sb.append("ACTIVA");
+	    } else {
+	        sb.append("INACTIVA");
+	    }
+	    sb.append("): ");
+	    sb.append(fechaPuestaEnFuncionamiento.format(DateTimeFormatter.ISO_LOCAL_DATE_TIME));
+	    return sb.toString();
+	}
+	
+	
 	
 }

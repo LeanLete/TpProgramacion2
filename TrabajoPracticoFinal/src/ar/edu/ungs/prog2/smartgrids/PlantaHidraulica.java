@@ -11,7 +11,7 @@ public class PlantaHidraulica extends PlantaRenovable {
 	public PlantaHidraulica(int id, String nombre, String direccion, double capacidadMaxgen,
 			LocalDateTime fechaPuestaEnFuncionamiento, String fuentePrimaria, double eficienciaPromedio,
 			int cantidadTurbinas, double capacidadEmbalse)  {
-		super(id, nombre, direccion, capacidadMaxgen, fechaPuestaEnFuncionamiento, fuentePrimaria, eficienciaPromedio);
+		super(nombre, direccion, capacidadMaxgen, fechaPuestaEnFuncionamiento, fuentePrimaria, eficienciaPromedio);
 		
 		if(cantidadTurbinas <= 0 || cantidadTurbinas > MAX_TURBINA) {
 			throw new RuntimeException("La cantidad de turbinas tiene que estar entre 1 y "+ MAX_TURBINA);

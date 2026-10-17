@@ -8,9 +8,9 @@ public abstract class PlantaNoRenovable extends Planta {
 	private double capacidadAlmacenamiento;
 	
 
-	public PlantaNoRenovable(int id, String nombre, String direccion, double capacidadMaxgen,
+	public PlantaNoRenovable( String nombre, String direccion, double capacidadMaxgen,
 			LocalDateTime fechaPuestaEnFuncionamiento, String tipoCombustible, double capacidadAlmacenamiento) {
-		super(id, nombre, direccion, capacidadMaxgen, fechaPuestaEnFuncionamiento);
+		super( nombre, direccion, capacidadMaxgen, fechaPuestaEnFuncionamiento);
 		
 		if(tipoCombustible == null || tipoCombustible.isEmpty()) {
 			throw new RuntimeException("El tipo de combustible es obligatorio");
