@@ -1,5 +1,50 @@
 package ar.edu.ungs.prog2.smartgrids;
 
-public class RegistroMonitoreo {
+import java.time.LocalDateTime;
 
+public class RegistroMonitoreo {
+	private int id;//chequear 
+	private int idPlanta;//chequear
+	private LocalDateTime fechaHora;
+	private double  energiaGeneradaPorHora;
+	private int cantIncidencias;
+	public RegistroMonitoreo( LocalDateTime fechaHora, double energiaGeneradaPorHora,
+			int cantIncidencias) {
+		
+		if(energiaGeneradaPorHora<0) {
+			throw new RuntimeException("La energia generada por hora debe ser mayor a cero");
+		}
+		if(cantIncidencias<0) {
+			throw new RuntimeException("La cantidad de incidencias debe ser mayor a cero");
+		}
+		if(fechaHora ==null) {
+			throw new RuntimeException("La fecha y hora de los registros son obligatorios");
+		}
+		
+		this.id = id;////chequear
+		this.idPlanta = idPlanta;///// chequear
+		this.fechaHora = fechaHora;
+		this.energiaGeneradaPorHora = energiaGeneradaPorHora;
+		this.cantIncidencias = cantIncidencias;
+	}
+	
+	//---------Getters--------------
+	public int getId() {
+		return id;
+	}
+	public int getIdPlanta() {
+		return idPlanta;
+	}
+	public LocalDateTime getFechaHora() {
+		return fechaHora;
+	}
+	public double getEnergiaGeneradaPorHora() {
+		return energiaGeneradaPorHora;
+	}
+	public int getCantIncidencias() {
+		return cantIncidencias;
+	}
+	
+	
+	
 }
