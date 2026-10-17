@@ -13,6 +13,7 @@ public class SmartGrids implements ISmartGrids {
 			String fechaHoraPuestaEnFuncionamiento, String fuentePrimaria, double eficienciaPromedio,
 			double superficieCubierta, int cantidadPaneles, double horasRadiacionDiaria) {
 		// TODO Auto-generated method stub
+		
 
 	}
 
