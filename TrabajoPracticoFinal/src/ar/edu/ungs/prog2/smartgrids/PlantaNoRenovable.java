@@ -1,5 +1,40 @@
 package ar.edu.ungs.prog2.smartgrids;
 
-public class PlantaNoRenovable {
+import java.time.LocalDateTime;
 
+public abstract class PlantaNoRenovable extends Planta {
+	
+	private	String  tipoCombustible;
+	private double capacidadAlmacenamiento;
+	
+
+	public PlantaNoRenovable(int id, String nombre, String direccion, double capacidadMaxgen,
+			LocalDateTime fechaPuestaEnFuncionamiento, String tipoCombustible, double capacidadAlmacenamiento) {
+		super(id, nombre, direccion, capacidadMaxgen, fechaPuestaEnFuncionamiento);
+		
+		if(tipoCombustible == null || tipoCombustible.isEmpty()) {
+			throw new RuntimeException("El tipo de combustible es obligatorio");
+			
+		}
+		
+		if(capacidadAlmacenamiento <= 0) {
+			throw new RuntimeException("La capacidad de almacenamiento no puede ser cero ni un numero negativo");
+			
+		}
+		this.tipoCombustible = tipoCombustible;
+		this.capacidadAlmacenamiento = capacidadAlmacenamiento;
+	}
+
+	////---------Getters-----
+	public String getTipoCombustible() {
+		return tipoCombustible;
+	}
+
+
+	public double getCapacidadAlmacenamiento() {
+		return capacidadAlmacenamiento;
+	}
+	
+	
+	
 }
