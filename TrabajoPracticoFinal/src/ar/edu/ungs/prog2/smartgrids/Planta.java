@@ -75,6 +75,30 @@ public abstract  class Planta {
 		isActiva =nuevoEstado;
 	}
 	
+	public void agregaRegistroMonitoreo(RegistroMonitoreo registro) {
+		
+		if(registro==null) {
+			throw new RuntimeException("El registro de monitoreo es obligatorio");
+		}
+		LocalDateTime fechaHora= registro.getFechaHora();
+		if(fechaHora.isBefore(fechaPuestaEnFuncionamiento)) {
+			throw new RuntimeException("La fecha y hora no puede ser anterior a la puesta en funcionamiento");
+		}
+		if(registros.containsKey(fechaHora)) {
+			throw new RuntimeException("Ya existe un registro para esa fecha y hora");
+		}
+		
+		if(!isActiva) {
+			throw new RuntimeException("La planta esta inactiva, no se puede registrar monitoreo");
+		}
+		if(!(aceptarRegistroMonitoreo(registro))) {
+			throw new RuntimeException("El tipo de registro de monitoreo no cumple con la planta");
+		}
+		else {
+			throw new RuntimeException("El registro de monitoreo no cumple con los requisitos de la planta");
+		}
+		registros.put(fechaHora, registro);
+	}
 	
 	
 	
@@ -123,6 +147,8 @@ public abstract  class Planta {
 	    sb.append(fechaPuestaEnFuncionamiento.format(DateTimeFormatter.ISO_LOCAL_DATE_TIME));//agrega los segundos
 	    return sb.toString();
 	}
+
+	
 	
 	
 	

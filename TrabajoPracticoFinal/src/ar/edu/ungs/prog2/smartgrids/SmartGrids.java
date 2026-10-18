@@ -14,6 +14,7 @@ public class SmartGrids implements ISmartGrids {
 
 
 
+
 	public SmartGrids() {
 		plantas=new LinkedHashMap<String, Planta>(); // LinkedHasmap para respetar el orden de insercion.
 	}
@@ -127,7 +128,8 @@ public class SmartGrids implements ISmartGrids {
 
 	@Override
 	public void registrarMonitoreo(String nombre, String fechaHora, double energiaGenerada, int incidencias) {
-		// TODO Auto-generated method stub
+		Planta planta = buscarPlanta(nombre);
+		planta.agregaRegistroMonitoreo(LocalDateTime.parse(fechaHora), energiaGenerada, incidencias);
 
 	}
 
