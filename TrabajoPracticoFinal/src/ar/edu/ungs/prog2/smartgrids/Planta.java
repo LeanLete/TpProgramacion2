@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public abstract  class Planta {
 	private static int proximoId = 1;   // compartido por todas las plantas
@@ -139,7 +140,18 @@ public abstract  class Planta {
 	public List<PeriodoDeInactividad> getHistorialDeInactividad() {
 	    return Collections.unmodifiableList(historialDeInactividad);
 	}
+	public Map<LocalDateTime, RegistroMonitoreo> getRegistros() {
+    return Collections.unmodifiableMap(registros);
+}
 
+	public double totalEnergiaGenerada(){
+		double suma=0.0;
+		for (RegistroMonitoreo r : registros.values()) {
+			suma+= r.getEnergiaGenerada();
+		}
+		return suma;
+	}
+	
 	@Override
 	public String toString() {
 		StringBuilder sb = new StringBuilder();

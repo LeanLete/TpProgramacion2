@@ -155,7 +155,9 @@ public class SmartGrids implements ISmartGrids {
 
 	@Override
 	public double totalGenerado(String nombre) {
-		// TODO Auto-generated method stub
+		Planta planta = buscarPlanta(nombre);
+		RegisstroMonitoreo registro =planta.getRegistros().values();
+
 		return 0;
 	}
 
