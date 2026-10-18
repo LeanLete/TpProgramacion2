@@ -9,7 +9,8 @@ import java.util.HashMap;
 import java.util.List;
 
 public abstract  class Planta {
-	private int id;
+	private static int proximoId = 1;   // compartido por todas las plantas
+	private final int id;
 	private String nombre;
 	private String direccion;
 	private double capacidadMaxgen;
@@ -37,13 +38,14 @@ public abstract  class Planta {
 		}
 		
 		
-		this.id = id;// chequear 
+		this.id = proximoId++;   // asigna el próximo ID y lo incrementa
 		this.nombre = nombre;
 		this.direccion = direccion;
 		this.capacidadMaxgen = capacidadMaxgen;
 		this.isActiva = true;
 		this.fechaPuestaEnFuncionamiento = fechaPuestaEnFuncionamiento;
 		this.historialDeInactividad = new ArrayList<PeriodoDeInactividad>();
+		this.registros= new HashMap<LocalDateTime, RegistroMonitoreo>();
 	}
 	
 	public abstract double calcularCuotaMinima();
