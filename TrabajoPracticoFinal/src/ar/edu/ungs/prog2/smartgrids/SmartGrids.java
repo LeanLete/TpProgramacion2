@@ -155,10 +155,10 @@ public class SmartGrids implements ISmartGrids {
 
 	@Override
 	public double totalGenerado(String nombre) {
+		
 		Planta planta = buscarPlanta(nombre);
-		RegisstroMonitoreo registro =planta.getRegistros().values();
-
-		return 0;
+		
+		return planta.totalEnergiaGenerada();
 	}
 
 	@Override
