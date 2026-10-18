@@ -65,6 +65,20 @@ public class PlantaEolica extends PlantaRenovable{
 	public double getVelocidadMinimaViento() {
 		return velocidadMinimaViento;
 	}
+
+
+	@Override
+	public boolean aceptarRegistroMonitoreo(RegistroMonitoreo registro) {
+		if( registro instanceof RegistroPlantaEolica){
+			RegistroPlantaEolica registroEolica = (RegistroPlantaEolica)registro;
+			double velocidadDelViento =registroEolica.getVelocidadViento();
+			return velocidadDelViento>= velocidadMinimaViento; 
+		}
+		return false;
+		
+
+		
+	}
 	
 	
 	
