@@ -117,7 +117,7 @@ public abstract  class Planta {
 	        sb.append("INACTIVA");
 	    }
 	    sb.append("): ");
-	    sb.append(fechaPuestaEnFuncionamiento.format(DateTimeFormatter.ISO_LOCAL_DATE_TIME));
+	    sb.append(fechaPuestaEnFuncionamiento.format(DateTimeFormatter.ISO_LOCAL_DATE_TIME));//agrega los segundos
 	    return sb.toString();
 	}
 	
