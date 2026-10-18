@@ -95,9 +95,10 @@ public class SmartGrids implements ISmartGrids {
 
 	@Override
 	public double capacidadMinimaCuota(String nombre) {
-		Planta planta = buscarPlanta(nombre);
+		Planta planta = buscarPlanta(nombre);// sino existe se lanza la excepcion
 		return planta.calcularCuotaMinima();
-	}
+	}// devuelve la capacidad minima de cuota de la planta por nombre,
+	//  si no existe lanza una excepcion.
 
 	@Override
 	public void activarPlanta(String nombre, String fechaHora) {
