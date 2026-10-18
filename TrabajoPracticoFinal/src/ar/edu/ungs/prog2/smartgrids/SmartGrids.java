@@ -1,9 +1,9 @@
 package ar.edu.ungs.prog2.smartgrids;
 
-import java.security.PrivateKey;
+
 import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.HashMap;
+
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -95,8 +95,8 @@ public class SmartGrids implements ISmartGrids {
 
 	@Override
 	public double capacidadMinimaCuota(String nombre) {
-		// TODO Auto-generated method stub
-		return 0;
+		Planta planta = buscarPlanta(nombre);
+		return planta.calcularCuotaMinima();
 	}
 
 	@Override
