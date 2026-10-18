@@ -129,9 +129,11 @@ public class SmartGrids implements ISmartGrids {
 	@Override
 	public void registrarMonitoreo(String nombre, String fechaHora, double energiaGenerada, int incidencias) {
 		Planta planta = buscarPlanta(nombre);
-		planta.agregaRegistroMonitoreo(LocalDateTime.parse(fechaHora), energiaGenerada, incidencias);
+		RegistroMonitoreo registro = new RegistroMonitoreo(LocalDateTime.parse(fechaHora), energiaGenerada, incidencias);
+		planta.agregaRegistroMonitoreo(registro); 
 
-	}
+	}// busca la planta por nombre, crea un registro de monitoreo 
+	// y lo agrega a la planta.
 
 	@Override
 	public void registrarMonitoreo(String nombre, String fechaHora, double energiaGenerada, int incidencias,

@@ -94,9 +94,7 @@ public abstract  class Planta {
 		if(!(aceptarRegistroMonitoreo(registro))) {
 			throw new RuntimeException("El tipo de registro de monitoreo no cumple con la planta");
 		}
-		else {
-			throw new RuntimeException("El registro de monitoreo no cumple con los requisitos de la planta");
-		}
+		
 		registros.put(fechaHora, registro);
 	}
 	
@@ -104,6 +102,8 @@ public abstract  class Planta {
 	
 
 	
+	public abstract boolean aceptarRegistroMonitoreo(RegistroMonitoreo registro);
+
 	//---------------Getters---------
 	public int getId() {
 		return id;
