@@ -41,6 +41,7 @@ public class PlantaHidraulica extends PlantaRenovable {
 	public double getCapacidadEmbalse() {
 		return capacidadEmbalse;
 	}
+
 	
 	
 	

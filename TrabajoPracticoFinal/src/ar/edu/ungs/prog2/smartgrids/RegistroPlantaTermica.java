@@ -21,6 +21,11 @@ public class RegistroPlantaTermica extends RegistroMonitoreo{
 		this.cantCombustible = cantCombustible;
 	}
 
+	
+
+		
+	
+
 	//------------Getters-----------------------------
 	public double getCantCo2GeneradoPorHora() {
 		return cantCo2GeneradoPorHora;

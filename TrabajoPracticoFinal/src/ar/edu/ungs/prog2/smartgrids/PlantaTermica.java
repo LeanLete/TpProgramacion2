@@ -18,6 +18,21 @@ public class PlantaTermica extends PlantaNoRenovable {
 		}
 		this.objetivoEmisionCo2PorHora = objetivoEmisionCo2PorHora;
 	}
+	
+	@Override 
+	public boolean aceptarRegistroMonitoreo(RegistroMonitoreo registro) {
+		if(registro ==null){
+			throw new RuntimeException("El registro es obligatorio");
+		}
+		if( registro instanceof RegistroPlantaTermica){
+			RegistroPlantaTermica registroTermica = (RegistroPlantaTermica)registro;
+			double cantCo2GeneradoPorHora =registroTermica.getCantCo2GeneradoPorHora();
+			double cantCombustible=registroTermica.getCantCombustible();
+
+			return cantCo2GeneradoPorHora>=0 && cantCombustible>=0; 
+		}
+		return false;
+	}
 
 	
 	

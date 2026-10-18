@@ -102,7 +102,14 @@ public abstract  class Planta {
 	
 
 	
-	public abstract boolean aceptarRegistroMonitoreo(RegistroMonitoreo registro);
+	public boolean aceptarRegistroMonitoreo(RegistroMonitoreo registro) {
+		if(registro==null){
+			throw new RuntimeException("El registro de Monitoreo es obligatorio");
+		}
+		return !(registro instanceof RegistroPlantaEolica) && !(registro instanceof RegistroPlantaTermica);
+		
+		
+	}
 
 	//---------------Getters---------
 	public int getId() {

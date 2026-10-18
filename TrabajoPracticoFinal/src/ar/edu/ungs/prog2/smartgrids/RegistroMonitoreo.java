@@ -44,6 +44,8 @@ public class RegistroMonitoreo {
 	public int getCantIncidencias() {
 		return cantIncidencias;
 	}
+
+    
 	
 	
 	

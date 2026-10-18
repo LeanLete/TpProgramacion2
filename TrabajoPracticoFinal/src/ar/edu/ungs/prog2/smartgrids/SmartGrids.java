@@ -138,14 +138,18 @@ public class SmartGrids implements ISmartGrids {
 	@Override
 	public void registrarMonitoreo(String nombre, String fechaHora, double energiaGenerada, int incidencias,
 			double velocidadViento) {
-		// TODO Auto-generated method stub
+		Planta planta = buscarPlanta(nombre);
+		RegistroPlantaEolica registro = new RegistroPlantaEolica(LocalDateTime.parse(fechaHora), energiaGenerada, incidencias,velocidadViento);
+		planta.agregaRegistroMonitoreo(registro); 
 
-	}
+	}// busca la planta por nombre, crea un registro eolica y lo agrega al mapa de registros.
 
 	@Override
 	public void registrarMonitoreo(String nombre, String fechaHora, double energiaGenerada, int incidencias,
 			double co2Emitido, double combustibleUtilizado) {
-		// TODO Auto-generated method stub
+		Planta planta = buscarPlanta(nombre);
+		RegistroPlantaTermica registro = new RegistroPlantaTermica(LocalDateTime.parse(fechaHora), energiaGenerada, incidencias,co2Emitido,combustibleUtilizado);
+		planta.agregaRegistroMonitoreo(registro); 
 
 	}
 
