@@ -23,7 +23,7 @@ public class SmartGrids implements ISmartGrids {
 		if (nombre ==null) {
 			throw new RuntimeException("El campo del nombre es obligatorio");
 		}
-		return nombre.toLowerCase().replaceAll("\\s+", "");	
+		return nombre.toLowerCase().replace(" ", "");	
 				}
 	/// pasa a minuscula el nombre y elimina los espacios
 	
@@ -91,7 +91,7 @@ public class SmartGrids implements ISmartGrids {
 		}
 		return lista; 
 		
-	}
+	}// devuelve una lista con el detalle de cada planta
 
 	@Override
 	public double capacidadMinimaCuota(String nombre) {
@@ -101,21 +101,28 @@ public class SmartGrids implements ISmartGrids {
 
 	@Override
 	public void activarPlanta(String nombre, String fechaHora) {
-		// TODO Auto-generated method stub
+		Planta planta = buscarPlanta(nombre);
+		planta.actualizarEstado(true, LocalDateTime.parse(fechaHora));
 
-	}
+	}// actualiza el estado de la planta por nombre y fechaHora,
+	//  si ya estaba activa no hace nada, si estaba inactiva la activa 
+	// y cierra el periodo de inactividad.
 
 	@Override
 	public void desactivarPlanta(String nombre, String fechaHora) {
-		// TODO Auto-generated method stub
+		Planta planta = buscarPlanta(nombre);
+		planta.actualizarEstado(false, LocalDateTime.parse(fechaHora));
 
-	}
+	}// actualiza el estado de la planta por nombre y fechaHora,
+	//  si ya estaba inactiva no hace nada, si estaba activa la desactiva
+	// y abre un nuevo periodo de inactividad.
 
 	@Override
 	public boolean estaActiva(String nombre) {
-		// TODO Auto-generated method stub
-		return false;
-	}
+		Planta planta = buscarPlanta(nombre);
+		return planta.isActiva();
+	}// consulta el estado de la planta por nombre, devuelve true si esta activa,
+	 // false si esta inactiva.
 
 	@Override
 	public void registrarMonitoreo(String nombre, String fechaHora, double energiaGenerada, int incidencias) {

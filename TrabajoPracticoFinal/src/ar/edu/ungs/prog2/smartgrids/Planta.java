@@ -38,7 +38,8 @@ public abstract  class Planta {
 		}
 		
 		
-		this.id = proximoId++;   // asigna el próximo ID y lo incrementa
+		
+		this.id = proximoId++;   // asigna el próximo ID y lo incrementa ,arranca en 1.
 		this.nombre = nombre;
 		this.direccion = direccion;
 		this.capacidadMaxgen = capacidadMaxgen;
@@ -57,7 +58,7 @@ public abstract  class Planta {
 	
 	public void actualizarEstado(boolean nuevoEstado,LocalDateTime fechaHora) {
 		if(nuevoEstado== isActiva) {
-			throw new RuntimeException("La planta ya se encuentra en ese estado");
+			return; // no hay cambio de estado, no se hace nada
 		}
 		
 		if(fechaHora == null) {
