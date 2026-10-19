@@ -163,9 +163,13 @@ public class SmartGrids implements ISmartGrids {
 
 	@Override
 	public int[] incidenciasPorHora(String nombre) {
-		// TODO Auto-generated method stub
-		return null;
+		int[] incidencias=new int[24];// arreglo de 24 posiciones 
+		
+		Planta planta=buscarPlanta(nombre);
+		return planta.cantIncidenciaPorhora(incidencias);
 	}
+	//suma la cantidad de incidencias acumuladas por hora de todos
+	//  los registros sin importar el dia;
 
 	@Override
 	public int[] histogramaCumplimiento(String nombre, String fechaDesde, String fechaHasta) {

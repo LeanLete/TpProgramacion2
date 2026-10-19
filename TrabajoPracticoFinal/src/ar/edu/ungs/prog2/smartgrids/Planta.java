@@ -151,7 +151,23 @@ public abstract  class Planta {
 		}
 		return suma;
 	}
+
+	public int[] cantIncidenciaPorhora(int[] incidencias){
+		
+		for (RegistroMonitoreo r : registros.values()) { // recorre todos los registros de la planta
+			int h=r.getFechaHora().getHour();     // obtiene la hora de ese registro
+			incidencias[h]+=r.getCantIncidencias(); // en la posicion h del arreglo suma las incidencias de ese registro 
+													//s si dos registros tienen la misma hora se suman las inccidencias
+		}
+		
 	
+		
+		return incidencias;
+
+	}
+	
+
+
 	@Override
 	public String toString() {
 		StringBuilder sb = new StringBuilder();
