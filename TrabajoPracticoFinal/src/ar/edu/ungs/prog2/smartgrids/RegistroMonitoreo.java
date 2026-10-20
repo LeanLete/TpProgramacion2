@@ -3,7 +3,8 @@ package ar.edu.ungs.prog2.smartgrids;
 import java.time.LocalDateTime;
 
 public class RegistroMonitoreo {
-	private int id;//chequear 
+	private static int proximoId = 1;// compartido or todos los registros
+	private final int id;
 	private int idPlanta;//chequear
 	private LocalDateTime fechaHora;
 	private double  energiaGenerada;
@@ -21,8 +22,7 @@ public class RegistroMonitoreo {
 			throw new RuntimeException("La fecha y hora de los registros son obligatorios");
 		}
 		
-		this.id = id;////chequear
-		this.idPlanta = idPlanta;///// chequear
+		this.id = proximoId++;
 		this.fechaHora = fechaHora;
 		this.energiaGenerada = energiaGenerada;
 		this.cantIncidencias = cantIncidencias;
