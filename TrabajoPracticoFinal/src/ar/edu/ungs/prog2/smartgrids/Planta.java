@@ -116,6 +116,8 @@ public abstract  class Planta {
 		
 	}
 
+
+
 	//---------------Getters---------
 	public int getId() {
 		return id;
@@ -199,6 +201,15 @@ public abstract  class Planta {
 
 	public String  getFuentePrimaria(){ //valor pord efecto para las plantas no renovables
 			return null;
+	}
+
+	public boolean cumplio(ArrayList<String>plantasQueNoCumplieron){
+		for (RegistroMonitoreo r : registros.values()) {
+			if((cumplioCuotaMinima(r))){
+				return true;
+			}
+		}
+		return false;// si no ahy registros el for no entra y devuelve false.
 	}
 
 	@Override

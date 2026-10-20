@@ -188,7 +188,8 @@ public class SmartGrids implements ISmartGrids {
 				String fuente=p.getFuentePrimaria();
 				plantasRenovablesFuente.put(fuente,plantasRenovablesFuente.getOrDefault(fuente, 0)+1 );
 				
-			}
+			}//recorre las plantas del mapa se queda con las renovables y la agrega
+			// si ya existe la fuente y la suma.
 				
 		}
 		return plantasRenovablesFuente;
@@ -196,8 +197,14 @@ public class SmartGrids implements ISmartGrids {
 
 	@Override
 	public List<String> plantasQueNuncaCumplieronCuota() {
-		// TODO Auto-generated method stub
-		return null;
+		ArrayList<String>plantasQueNoCumplieron=  new ArrayList<>();
+		for (Planta p : plantas.values()) {
+			if(!p.cumplio(plantasQueNoCumplieron)){
+					plantasQueNoCumplieron.add(p.getNombre());
+			}
+		}
+		return plantasQueNoCumplieron;
+		
 	}
 
 	@Override
