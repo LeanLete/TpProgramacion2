@@ -171,10 +171,12 @@ public class SmartGrids implements ISmartGrids {
 	//suma la cantidad de incidencias acumuladas por hora de todos
 	//  los registros sin importar el dia;
 
+
 	@Override
 	public int[] histogramaCumplimiento(String nombre, String fechaDesde, String fechaHasta) {
-		// TODO Auto-generated method stub
-		return null;
+		int[] enCuantosDiasCumplio=new int[24];// arreglo de 24 posiciones
+
+		return buscarPlanta(nombre).enCuantoCumplio(fechaDesde,fechaHasta,enCuantosDiasCumplio);
 	}
 
 	@Override

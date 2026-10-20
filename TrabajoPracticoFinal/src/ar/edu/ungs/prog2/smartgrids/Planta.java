@@ -1,6 +1,7 @@
 package ar.edu.ungs.prog2.smartgrids;
 
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -8,6 +9,8 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import javax.management.RuntimeErrorException;
 
 public abstract  class Planta {
 	private static int proximoId = 1;   // compartido por todas las plantas
@@ -165,6 +168,31 @@ public abstract  class Planta {
 		return incidencias;
 
 	}
+
+
+	  public int[] enCuantoCumplio(String fechaDesde, String fechaHasta, int[] enCuantosDiasCumplio){
+			LocalDate desde = LocalDate.parse(fechaDesde);
+			LocalDate hasta = LocalDate.parse(fechaHasta);
+			
+			if(desde.isBefore(hasta)){// si desde es posterior a hasta
+				throw new RuntimeException("La primer fecha tiene que ser anterior ala segunda ");
+			}
+
+
+			for(RegistroMonitoreo r :registros.values() ){
+					int h=r.getFechaHora().getHour();
+					LocalDate dia = r.getFechaHora().toLocalDate();
+
+					if(!dia.isBefore(desde)&& !dia.isAfter(hasta)){ //el dia no es posterior a desde y el dia no es antes que hasta.
+																    // es para que tome las fechas cuandos on iguales.	
+						if(cumplioCuotaMinima(r)){
+							enCuantosDiasCumplio[h]+= 1;
+						}
+					}		
+					
+			}
+		return enCuantosDiasCumplio;
+	}
 	
 
 
@@ -182,6 +210,10 @@ public abstract  class Planta {
 	    sb.append(fechaPuestaEnFuncionamiento.format(DateTimeFormatter.ISO_LOCAL_DATE_TIME));//agrega los segundos
 	    return sb.toString();
 	}
+
+	
+
+  
 
 	
 	
