@@ -24,6 +24,7 @@ public abstract  class Planta {
 	private HashMap<LocalDateTime, RegistroMonitoreo> registros;
 	
 	
+	
 	//La planta nace activa y con el historial vacio.
 	public Planta(String nombre, String direccion, double capacidadMaxgen,
 			LocalDateTime fechaPuestaEnFuncionamiento) {
@@ -196,6 +197,9 @@ public abstract  class Planta {
 	
 	public abstract boolean esRenovable();
 
+	public String  getFuentePrimaria(){ //valor pord efecto para las plantas no renovables
+			return null;
+	}
 
 	@Override
 	public String toString() {

@@ -3,7 +3,8 @@ package ar.edu.ungs.prog2.smartgrids;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
-
+import java.util.Collection;
+import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -181,8 +182,16 @@ public class SmartGrids implements ISmartGrids {
 
 	@Override
 	public Map<String, Integer> plantasRenovablesPorFuente() {
-		// TODO Auto-generated method stub
-		return null;
+		 Map <String,Integer> plantasRenovablesFuente= new  HashMap<>();
+		for(Planta p: plantas.values()){
+			if(p.esRenovable()){
+				String fuente=p.getFuentePrimaria();
+				plantasRenovablesFuente.put(fuente,plantasRenovablesFuente.getOrDefault(fuente, 0)+1 );
+				
+			}
+				
+		}
+		return plantasRenovablesFuente;
 	}
 
 	@Override
