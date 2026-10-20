@@ -25,6 +25,12 @@ public abstract class PlantaNoRenovable extends Planta {
 		this.capacidadAlmacenamiento = capacidadAlmacenamiento;
 	}
 
+
+	public boolean esRenovable(){
+		return false;
+	}
+		
+
 	////---------Getters-----
 	public String getTipoCombustible() {
 		return tipoCombustible;

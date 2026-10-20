@@ -10,7 +10,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.management.RuntimeErrorException;
+
 
 public abstract  class Planta {
 	private static int proximoId = 1;   // compartido por todas las plantas
@@ -174,7 +174,7 @@ public abstract  class Planta {
 			LocalDate desde = LocalDate.parse(fechaDesde);
 			LocalDate hasta = LocalDate.parse(fechaHasta);
 			
-			if(desde.isBefore(hasta)){// si desde es posterior a hasta
+			if(desde.isAfter(hasta)){// si desde es posterior a hasta
 				throw new RuntimeException("La primer fecha tiene que ser anterior ala segunda ");
 			}
 
@@ -182,8 +182,8 @@ public abstract  class Planta {
 			for(RegistroMonitoreo r :registros.values() ){
 					int h=r.getFechaHora().getHour();
 					LocalDate dia = r.getFechaHora().toLocalDate();
-
-					if(!dia.isBefore(desde)&& !dia.isAfter(hasta)){ //el dia no es posterior a desde y el dia no es antes que hasta.
+																    // dia>= desde  y   dia<= hasta
+					if(!dia.isBefore(desde)&& !dia.isAfter(hasta)){ //el dia no es anterior a desde y el dia no es posterior a  hasta.
 																    // es para que tome las fechas cuandos on iguales.	
 						if(cumplioCuotaMinima(r)){
 							enCuantosDiasCumplio[h]+= 1;
@@ -194,6 +194,7 @@ public abstract  class Planta {
 		return enCuantosDiasCumplio;
 	}
 	
+	public abstract boolean esRenovable();
 
 
 	@Override

@@ -51,6 +51,9 @@ public abstract class PlantaRenovable extends Planta {
 		return registro.getEnergiaGenerada()>= calcularCuotaMinima();	}
 
 		
+	public boolean esRenovable(){
+		return true;
+	}
 		
 		
 }
