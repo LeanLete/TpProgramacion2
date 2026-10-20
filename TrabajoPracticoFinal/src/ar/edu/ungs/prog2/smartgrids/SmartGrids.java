@@ -3,7 +3,7 @@ package ar.edu.ungs.prog2.smartgrids;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.Collection;
+
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -197,7 +197,7 @@ public class SmartGrids implements ISmartGrids {
 
 	@Override
 	public List<String> plantasQueNuncaCumplieronCuota() {
-		ArrayList<String>plantasQueNoCumplieron=  new ArrayList<>();
+		ArrayList<String>plantasQueNoCumplieron=  new ArrayList<String>();
 		for (Planta p : plantas.values()) {
 			if(!p.cumplio(plantasQueNoCumplieron)){
 					plantasQueNoCumplieron.add(p.getNombre());

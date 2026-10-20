@@ -18,7 +18,7 @@ public class PlantaTermica extends PlantaNoRenovable {
 		}
 		this.objetivoEmisionCo2PorHora = objetivoEmisionCo2PorHora;
 	}
-	
+
 	@Override 
 	public boolean aceptarRegistroMonitoreo(RegistroMonitoreo registro) {
 		if(registro ==null){
@@ -62,7 +62,7 @@ public class PlantaTermica extends PlantaNoRenovable {
 	public boolean cumplioCuotaMinima(RegistroMonitoreo registro) {
 		RegistroPlantaTermica reg= (RegistroPlantaTermica)registro;
 		
-		return calcularCuotaMinima() >= reg.getEnergiaGenerada() &&  reg.getCantCo2GeneradoPorHora()< objetivoEmisionCo2PorHora ;
+		return calcularCuotaMinima() >= calcularCuotaMinima() &&  reg.getCantCo2GeneradoPorHora()< objetivoEmisionCo2PorHora ;
 		 
 	}
 	
