@@ -111,7 +111,9 @@ public abstract  class Planta {
 		if(registro==null){
 			throw new RuntimeException("El registro de Monitoreo es obligatorio");
 		}
-		return !(registro instanceof RegistroPlantaEolica) && !(registro instanceof RegistroPlantaTermica);
+		return registro.getClass()== RegistroMonitoreo.class;// si la clase real(RegistroPlantaEolica) 
+								// es una subclase de Registro monitoreo retorna false.
+								//compara si son de la misma clase.
 		
 		
 	}

@@ -74,12 +74,9 @@ public class PlantaEolica extends PlantaRenovable{
 		if(registro ==null){
 			throw new RuntimeException("El registro es obligatorio");
 		}
-		if( registro instanceof RegistroPlantaEolica){
-			RegistroPlantaEolica registroEolica = (RegistroPlantaEolica)registro;
-			double velocidadDelViento =registroEolica.getVelocidadViento();
-			return velocidadDelViento>= velocidadMinimaViento; 
-		}
-		return false;
+		return registro instanceof RegistroPlantaEolica;//responde si el registro es 
+														//de tipo PlantaEolica
+			
 		
 
 		
