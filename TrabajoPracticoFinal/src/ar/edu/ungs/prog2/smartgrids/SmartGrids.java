@@ -8,7 +8,7 @@ import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.TreeMap;
+
 
 public class SmartGrids implements ISmartGrids {
 	
@@ -228,12 +228,17 @@ public class SmartGrids implements ISmartGrids {
 		StringBuilder sb=new  StringBuilder();
 		sb.append("-");
 		sb.append(eolica.getNombre());
-		sb.append(":  ");
+		sb.append(": ");
 		sb.append(eolica.getVelocidadMinimaViento());
 		sb.append("m/s\n");
 
 		for (Map.Entry<Integer,Double> e  : eolica.horasSinVelocidadMinimaPorPlantaEolica().entrySet()) {
-			sb.append(e.getKey()+": "+ e.getValue()+" m/s");
+			
+			if(e.getKey()>=0 && e.getKey()<10 ){ // los numeros salian 1 2 3y necesitabamos 01,02,03
+									 
+				sb.append("      0");
+			}
+			sb.append(e.getKey()+": "+ e.getValue()+"m/s\n");
 		}
 
 		return sb.toString();
