@@ -248,8 +248,12 @@ public class SmartGrids implements ISmartGrids {
 
 	@Override
 	public int limpiarMonitoreosSinDatos() {
-		// TODO Auto-generated method stub
-		return 0;
+		int cantRegistrosBorrados=0;
+		for (Planta p : plantas.values()) {
+			cantRegistrosBorrados+=  p.borrarRegistros();
+		}
+		return cantRegistrosBorrados;
+		
 	}
 
 	@Override

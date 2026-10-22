@@ -7,6 +7,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -212,6 +213,32 @@ public abstract  class Planta {
 			}
 		}
 		return false;// si no ahy registros el for no entra y devuelve false.
+	}
+
+
+	public int borrarRegistros(){
+		
+		for (RegistroMonitoreo r : registros.values()) { // recorre todos los registros de la planta
+			
+												
+		}
+		Iterator <RegistroMonitoreo> it= registros.values().iterator();
+		int cantidadBorrados=0;
+		while (it.hasNext()) {
+			RegistroMonitoreo elemento= it.next();
+			double energia= elemento.getEnergiaGenerada();     // obtiene la energia generada de ese registro
+			int incidencias=elemento.getCantIncidencias(); //  obtiene la cantidad de incidencias de ese registro
+			if(energia==0 && incidencias==0){
+					
+					it.remove();
+					cantidadBorrados+=1;
+			}
+
+		}
+	
+		
+		return cantidadBorrados;
+
 	}
 
 	@Override
