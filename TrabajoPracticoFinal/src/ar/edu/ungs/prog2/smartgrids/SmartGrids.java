@@ -3,7 +3,8 @@ package ar.edu.ungs.prog2.smartgrids;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
-
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -258,8 +259,28 @@ public class SmartGrids implements ISmartGrids {
 
 	@Override
 	public List<String> plantasOrdenadasPorEnergiaGenerada() {
-		// TODO Auto-generated method stub
-		return null;
+		ArrayList<Planta> lista= new ArrayList<>(plantas.values());// lista de las plantas
+		
+		Collections.sort(lista,new ComparadorPorEnergia()); // ordena usando el criterio del comparador, sort recibe una lista y un objeto comparador
+		ArrayList<String> nuevaLista= new ArrayList<>();// lista vacia 
+		for (Planta p : lista) {
+			nuevaLista.add(p.getNombre()+": "+p.totalEnergiaGen());// agrego el string concatenando eso datos
+
+		}
+
+		return nuevaLista;
+	}
+
+	private static class ComparadorPorEnergia implements Comparator<Planta> {// clase anidada no esta instanciada
+																			// no puede usar los objetos de smart grids	
+
+		@Override
+		public int compare(Planta a, Planta b) {
+			return Double.compare(b.totalEnergiaGen(), a.totalEnergiaGen());// b primero y a , mayor a menor 
+																			
+		}
+	
+		
 	}
 
 	@Override

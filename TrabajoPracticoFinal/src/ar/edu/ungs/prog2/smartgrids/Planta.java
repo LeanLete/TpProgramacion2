@@ -241,6 +241,18 @@ public abstract  class Planta {
 
 	}
 
+
+	public double totalEnergiaGen(){
+
+		double total=0;
+		for (RegistroMonitoreo r : registros.values()) {
+			total+= r.getEnergiaGenerada();
+		}
+
+		return total;
+
+	}
+
 	@Override
 	public String toString() {
 		StringBuilder sb = new StringBuilder();
