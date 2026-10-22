@@ -8,6 +8,7 @@ import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.TreeMap;
 
 public class SmartGrids implements ISmartGrids {
 	
@@ -209,9 +210,36 @@ public class SmartGrids implements ISmartGrids {
 
 	@Override
 	public String horasSinVelocidadMinimaPorPlantaEolica() {
-		// TODO Auto-generated method stub
-		return null;
+		StringBuilder sb=new  StringBuilder();
+		
+		sb.append("Plantas Eolicas: Horas con poco viento\n");
+
+		for (Planta p : plantas.values()) {
+			if(p instanceof PlantaEolica){
+				PlantaEolica eolica =(PlantaEolica)p;
+				sb.append(formatearPlanta(eolica));
+			}
+		}
+		return sb.toString();
 	}
+	
+
+	private String formatearPlanta(PlantaEolica eolica) {
+		StringBuilder sb=new  StringBuilder();
+		sb.append("-");
+		sb.append(eolica.getNombre());
+		sb.append(":  ");
+		sb.append(eolica.getVelocidadMinimaViento());
+		sb.append("m/s\n");
+
+		for (Map.Entry<Integer,Double> e  : eolica.horasSinVelocidadMinimaPorPlantaEolica().entrySet()) {
+			sb.append(e.getKey()+": "+ e.getValue()+" m/s");
+		}
+
+		return sb.toString();
+		
+	}
+
 
 	@Override
 	public int limpiarMonitoreosSinDatos() {

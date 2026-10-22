@@ -1,6 +1,8 @@
 package ar.edu.ungs.prog2.smartgrids;
 
 import java.time.LocalDateTime;
+import java.util.Map;
+import java.util.TreeMap;
 
 public class PlantaEolica extends PlantaRenovable{
 	private static final int MAX_AEROGENERADORES = 1000;
@@ -82,6 +84,39 @@ public class PlantaEolica extends PlantaRenovable{
 
 		
 	}
+
+	public Map<Integer,Double> horasSinVelocidadMinimaPorPlantaEolica(){
+		Map<Integer,Double>horas=new TreeMap<>();// el treeemap nos ordena las las horas.(ordena las claves)busqueda O(log(n))
+		Double []max=maximaVelocidadPorHora(); // guarda el array con las maximasvelocidades de viento
+
+		for(int hora=0;hora<max.length;hora++){
+			if(max[hora] !=null && max[hora]<velocidadMinimaViento ){ //si no esta vacio y esa velocidad es menor
+																	//  ala velocidad minima del viento lo agrego al mapa
+				horas.put(hora, max[hora]);
+			}
+		}
+
+		return horas;
+	}
+
+	public Double[] maximaVelocidadPorHora(){
+		Double[] max= new Double[24];//el arreglo comienza en null.
+		
+		for (RegistroMonitoreo r : getRegistros().values()) {// recorro los registros
+			RegistroPlantaEolica reg=(RegistroPlantaEolica) r;// tengo que castear todos los registros.
+
+			int hora=r.getFechaHora().getHour(); //obtengo la hora del registro de 0 a 23
+			double velocidad=reg.getVelocidadViento();// velocidad del viento del registro
+			if(max[hora]==null || velocidad>max[hora] ){// si es nulo o la velocidad es mayor  
+				max[hora]=velocidad;// se queda con la maxima velocidad del viento
+			}
+			
+
+		}
+		return max;
+	}
+
+
 	
 	
 	
