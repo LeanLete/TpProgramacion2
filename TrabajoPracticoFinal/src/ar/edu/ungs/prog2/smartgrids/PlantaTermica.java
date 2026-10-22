@@ -62,7 +62,7 @@ public class PlantaTermica extends PlantaNoRenovable {
 	public boolean cumplioCuotaMinima(RegistroMonitoreo registro) {
 		RegistroPlantaTermica reg= (RegistroPlantaTermica)registro;
 		
-		return calcularCuotaMinima() >= calcularCuotaMinima() &&  reg.getCantCo2GeneradoPorHora()< objetivoEmisionCo2PorHora ;
+		return reg.getEnergiaGenerada() >= calcularCuotaMinima() &&  reg.getCantCo2GeneradoPorHora()< objetivoEmisionCo2PorHora ;
 		 
 	}
 	
