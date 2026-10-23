@@ -60,6 +60,18 @@ public class PeriodoDeInactividad {
 
 
 
+	@Override
+	public String toString() {
+		if(hasta==null){
+			return "PeriodoDeInactividad [desde=" + desde + ", sigue inactiva]";
+		}
+		return "PeriodoDeInactividad [desde=" + desde + ", hasta=" + hasta + "]";
+	}
+
+
+
+
+
     
 	
 }

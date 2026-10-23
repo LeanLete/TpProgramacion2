@@ -46,7 +46,7 @@ public class CodigoCliente {
 
         imprimirEstado("Final", sistema);
     }
-
+    
     private static void imprimirEstado(String momento, ISmartGrids sistema) {
         System.out.println("\n--- " + momento + " INICIO ---");
         System.out.println(sistema.toString());
@@ -54,4 +54,5 @@ public class CodigoCliente {
         System.out.println("Plantas registradas: " + sistema.consultarPlantas());
         System.out.println("\n--- " + momento + " FIN ---");
     }
+    
 }

@@ -3,12 +3,12 @@ package ar.edu.ungs.prog2.smartgrids;
 import java.time.LocalDateTime;
 
 public class RegistroMonitoreo {
-	private static int proximoId = 1;// compartido or todos los registros
+	private static int proximoId = 1;// compartido por todos los registros
 	private final int id;
-	private int idPlanta;//chequear
 	private LocalDateTime fechaHora;
 	private double  energiaGenerada;
 	private int cantIncidencias;
+
 	public RegistroMonitoreo( LocalDateTime fechaHora, double energiaGenerada,
 			int cantIncidencias) {
 		
@@ -32,9 +32,7 @@ public class RegistroMonitoreo {
 	public int getId() {
 		return id;
 	}
-	public int getIdPlanta() {
-		return idPlanta;
-	}
+	
 	public LocalDateTime getFechaHora() {
 		return fechaHora;
 	}

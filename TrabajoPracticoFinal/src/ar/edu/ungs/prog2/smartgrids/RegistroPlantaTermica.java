@@ -34,6 +34,17 @@ public class RegistroPlantaTermica extends RegistroMonitoreo{
 	public double getCantCombustible() {
 		return cantCombustible;
 	}
+
+
+
+
+
+
+	@Override
+	public String toString() {
+		return super.toString() +  " [cantCo2GeneradoPorHora=" + cantCo2GeneradoPorHora + ", cantCombustible="
+				+ cantCombustible + "]";
+	}
 	
 	
 	

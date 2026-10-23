@@ -1,7 +1,7 @@
 package ar.edu.ungs.prog2.smartgrids;
 
 
-import java.time.LocalDate;
+
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -296,4 +296,38 @@ public class SmartGrids implements ISmartGrids {
 		return plantasInactivas;
 	}
 
+
+	@Override
+public String toString() {
+    StringBuilder sb = new StringBuilder();
+
+    sb.append("SmartGrids\n");
+	 sb.append("Cantidad de plantas: ").append(plantas.size()).append("\n");
+
+    for (Planta p : plantas.values()) {
+        sb.append("\n").append(p.toString()).append("\n");
+
+        sb.append("  Periodos de Inactividad:\n");
+        if (p.getHistorialDeInactividad().isEmpty()) {
+            sb.append("    vacio!\n");
+        }
+        for (PeriodoDeInactividad per : p.getHistorialDeInactividad()) {
+            sb.append("    ").append(per.toString()).append("\n");
+        }
+
+        sb.append("  Registros de Monitoreo:\n");
+        if (p.getRegistros().isEmpty()) {
+            sb.append("    vacio!\n");
+        }
+        for (RegistroMonitoreo r : p.getRegistros().values()) {
+            sb.append("    ").append(r.toString()).append("\n");
+        }
+    }
+    return sb.toString();
 }
+		
+	}
+
+	
+
+

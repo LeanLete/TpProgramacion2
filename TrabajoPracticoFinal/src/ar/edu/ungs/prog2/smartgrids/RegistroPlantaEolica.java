@@ -22,6 +22,13 @@ public class RegistroPlantaEolica extends RegistroMonitoreo {
 		return velocidadViento;
 	}
 
+
+	@Override
+	public String toString() {
+		
+		return super.toString()+ " [velocidadViento=" + velocidadViento + " m/s]";
+	}
+
 	
 	
 	
