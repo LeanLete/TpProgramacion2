@@ -170,7 +170,7 @@ public class SmartGrids implements ISmartGrids {
 		int[] incidencias=new int[24];// arreglo de 24 posiciones 
 		
 		Planta planta=buscarPlanta(nombre);
-		return planta.cantIncidenciaPorhora(incidencias);
+		return planta.cantIncidenciaPorHora(incidencias);
 	}
 	//suma la cantidad de incidencias acumuladas por hora de todos
 	//  los registros sin importar el dia;
@@ -202,7 +202,7 @@ public class SmartGrids implements ISmartGrids {
 	public List<String> plantasQueNuncaCumplieronCuota() {
 		ArrayList<String>plantasQueNoCumplieron=  new ArrayList<String>();
 		for (Planta p : plantas.values()) {
-			if(!p.cumplio(plantasQueNoCumplieron)){
+			if(!p.cumplio()){
 					plantasQueNoCumplieron.add(p.getNombre());
 			}
 		}
@@ -265,7 +265,7 @@ public class SmartGrids implements ISmartGrids {
 		Collections.sort(lista,new ComparadorPorEnergia()); // ordena usando el criterio del comparador, sort recibe una lista y un objeto comparador
 		ArrayList<String> nuevaLista= new ArrayList<>();// lista vacia 
 		for (Planta p : lista) {
-			nuevaLista.add(p.getNombre()+": "+p.totalEnergiaGen());// agrego el string concatenando eso datos
+			nuevaLista.add(p.getNombre()+": "+p.totalEnergiaGenerada());// agrego el string concatenando eso datos
 
 		}
 
@@ -277,7 +277,7 @@ public class SmartGrids implements ISmartGrids {
 
 		@Override
 		public int compare(Planta a, Planta b) {
-			return Double.compare(b.totalEnergiaGen(), a.totalEnergiaGen());// b primero y a , mayor a menor 
+			return Double.compare(b.totalEnergiaGenerada(), a.totalEnergiaGenerada());// b primero y a , mayor a menor 
 																			
 		}
 	

@@ -43,6 +43,12 @@ public class RegistroMonitoreo {
 		return cantIncidencias;
 	}
 
+	@Override
+	public String toString() {
+		return "RegistroMonitoreo [id=" + id + ", fechaHora=" + fechaHora + ", energiaGenerada=" + energiaGenerada
+				+ ", cantIncidencias=" + cantIncidencias + "]";
+	}
+
     
 	
 	

@@ -161,12 +161,12 @@ public abstract  class Planta {
 		return suma;
 	}
 
-	public int[] cantIncidenciaPorhora(int[] incidencias){
+	public int[] cantIncidenciaPorHora(int[] incidencias){
 		
 		for (RegistroMonitoreo r : registros.values()) { // recorre todos los registros de la planta
 			int h=r.getFechaHora().getHour();     // obtiene la hora de ese registro
 			incidencias[h]+=r.getCantIncidencias(); // en la posicion h del arreglo suma las incidencias de ese registro 
-													//s si dos registros tienen la misma hora se suman las inccidencias
+													// si dos registros tienen la misma hora se suman las incidencias
 		}
 		
 	
@@ -202,26 +202,23 @@ public abstract  class Planta {
 	
 	public abstract boolean esRenovable();
 
-	public String  getFuentePrimaria(){ //valor pord efecto para las plantas no renovables
+	public String  getFuentePrimaria(){ //valor por defecto para las plantas no renovables
 			return null;
 	}
 
-	public boolean cumplio(ArrayList<String>plantasQueNoCumplieron){
+	public boolean cumplio(){
 		for (RegistroMonitoreo r : registros.values()) {
 			if((cumplioCuotaMinima(r))){
 				return true;
 			}
 		}
-		return false;// si no ahy registros el for no entra y devuelve false.
+		return false;// si no hay registros el for no entra y devuelve false.
 	}
 
 
 	public int borrarRegistros(){
 		
-		for (RegistroMonitoreo r : registros.values()) { // recorre todos los registros de la planta
-			
-												
-		}
+		
 		Iterator <RegistroMonitoreo> it= registros.values().iterator();
 		int cantidadBorrados=0;
 		while (it.hasNext()) {
@@ -242,16 +239,7 @@ public abstract  class Planta {
 	}
 
 
-	public double totalEnergiaGen(){
-
-		double total=0;
-		for (RegistroMonitoreo r : registros.values()) {
-			total+= r.getEnergiaGenerada();
-		}
-
-		return total;
-
-	}
+	
 
 
 	public boolean estuvoInactivaEn(LocalDateTime fechaHora){
