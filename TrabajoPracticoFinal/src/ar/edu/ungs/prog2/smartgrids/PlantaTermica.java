@@ -8,10 +8,10 @@ public class PlantaTermica extends PlantaNoRenovable {
 	private double objetivoEmisionCo2PorHora;
 
 	public PlantaTermica( String nombre, String direccion, double capacidadMaxgen,
-			LocalDateTime fechaPuestaEnFuncionamiento, String tipoCombustible, double capacidadAlmacenamiento,
-			double objetivoEmisionCo2PorHora) {
+			LocalDateTime fechaPuestaEnFuncionamiento, String tipoCombustible, double objetivoEmisionCo2PorHora,
+			double capacidadAlmacenamientoCombustible) {
 		super( nombre, direccion, capacidadMaxgen, fechaPuestaEnFuncionamiento, tipoCombustible,
-				capacidadAlmacenamiento);
+				capacidadAlmacenamientoCombustible);
 		
 		if (objetivoEmisionCo2PorHora <= 0 || objetivoEmisionCo2PorHora > MAX_EMISION_CO2) {
 		    throw new RuntimeException("El objetivo de emisiones de CO2 por hora debe ser mayor a 0 y menor o igual a " + MAX_EMISION_CO2);

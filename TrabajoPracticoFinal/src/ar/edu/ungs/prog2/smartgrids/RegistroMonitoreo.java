@@ -6,13 +6,13 @@ public class RegistroMonitoreo {
 	private static int proximoId = 1;// compartido por todos los registros
 	private final int id;
 	private LocalDateTime fechaHora;
-	private double  energiaGenerada;
+	private double  energiaGeneradaPorHora;
 	private int cantIncidencias;
 
-	public RegistroMonitoreo( LocalDateTime fechaHora, double energiaGenerada,
+	public RegistroMonitoreo( LocalDateTime fechaHora, double energiaGeneradaPorHora,
 			int cantIncidencias) {
 		
-		if(energiaGenerada<0) {
+		if(energiaGeneradaPorHora<0) {
 			throw new RuntimeException("La energia generada por hora debe ser mayor a cero");
 		}
 		if(cantIncidencias<0) {
@@ -24,7 +24,7 @@ public class RegistroMonitoreo {
 		
 		this.id = proximoId++;
 		this.fechaHora = fechaHora;
-		this.energiaGenerada = energiaGenerada;
+		this.energiaGeneradaPorHora = energiaGeneradaPorHora;
 		this.cantIncidencias = cantIncidencias;
 	}
 	
@@ -37,7 +37,7 @@ public class RegistroMonitoreo {
 		return fechaHora;
 	}
 	public double getEnergiaGenerada() {
-		return energiaGenerada;
+		return energiaGeneradaPorHora;
 	}
 	public int getCantIncidencias() {
 		return cantIncidencias;
@@ -45,7 +45,7 @@ public class RegistroMonitoreo {
 
 	@Override
 	public String toString() {
-		return "RegistroMonitoreo [id=" + id + ", fechaHora=" + fechaHora + ", energiaGenerada=" + energiaGenerada
+		return "RegistroMonitoreo [id=" + id + ", fechaHora=" + fechaHora + ", energiaGenerada=" + energiaGeneradaPorHora
 				+ ", cantIncidencias=" + cantIncidencias + "]";
 	}
 

@@ -17,7 +17,7 @@ public abstract class PlantaRenovable extends Planta {
 		if(fuentePrimaria ==null) {
 			throw new RuntimeException("La fuente primaria es obligatoria");
 		}
-		if(eficienciaPromedio<0 && eficienciaPromedio >1) {
+		if(eficienciaPromedio<0 || eficienciaPromedio >1) {
 			throw new RuntimeException("La eficiencia promedio  tiene que estar entre 0 y 1");
 		}
 		this.fuentePrimaria = fuentePrimaria;

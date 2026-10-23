@@ -6,15 +6,16 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
-import java.util.HashMap;
+
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.TreeMap;
 
 
 public class SmartGrids implements ISmartGrids {
 	
-	LinkedHashMap<String, Planta> plantas;
+	private LinkedHashMap<String, Planta> plantas;
 
 
 
@@ -76,7 +77,7 @@ public class SmartGrids implements ISmartGrids {
 	public void registrarPlantaHidraulica(String nombre, String direccion, double capacidadMaxima,
 			String fechaHoraPuestaEnFuncionamiento, String fuentePrimaria, double eficienciaPromedio,
 			int cantidadTurbinas, double capacidadEmbalse) {
-		Planta hidraulica= new PlantaHidraulica(cantidadTurbinas, nombre, direccion, capacidadMaxima,  LocalDateTime.parse(fechaHoraPuestaEnFuncionamiento), fuentePrimaria, eficienciaPromedio, cantidadTurbinas, capacidadEmbalse);
+		Planta hidraulica= new PlantaHidraulica( nombre, direccion, capacidadMaxima,  LocalDateTime.parse(fechaHoraPuestaEnFuncionamiento), fuentePrimaria, eficienciaPromedio, cantidadTurbinas, capacidadEmbalse);
 		guardarPlanta(hidraulica);
 	}
 
@@ -84,7 +85,7 @@ public class SmartGrids implements ISmartGrids {
 	public void registrarPlantaTermica(String nombre, String direccion, double capacidadMaxima,
 			String fechaHoraPuestaEnFuncionamiento, String tipoCombustible, double objetivoEmisionesCo2PorHora,
 			double capacidadAlmacenamientoCombustible) {
-		Planta termica= new PlantaTermica(nombre, direccion, capacidadMaxima,LocalDateTime.parse(fechaHoraPuestaEnFuncionamiento) , tipoCombustible, capacidadAlmacenamientoCombustible, objetivoEmisionesCo2PorHora);
+		Planta termica= new PlantaTermica(nombre, direccion, capacidadMaxima,LocalDateTime.parse(fechaHoraPuestaEnFuncionamiento) , tipoCombustible, objetivoEmisionesCo2PorHora,capacidadAlmacenamientoCombustible );
 		guardarPlanta(termica);
 	}
 
@@ -185,7 +186,7 @@ public class SmartGrids implements ISmartGrids {
 
 	@Override
 	public Map<String, Integer> plantasRenovablesPorFuente() {
-		 Map <String,Integer> plantasRenovablesFuente= new  HashMap<>();
+		 Map <String,Integer> plantasRenovablesFuente= new  TreeMap<>();
 		for(Planta p: plantas.values()){
 			if(p.esRenovable()){
 				String fuente=p.getFuentePrimaria();
