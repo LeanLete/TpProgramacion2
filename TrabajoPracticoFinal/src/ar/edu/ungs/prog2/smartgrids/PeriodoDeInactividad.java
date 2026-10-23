@@ -30,6 +30,21 @@ public class PeriodoDeInactividad {
 	}
 
 
+
+
+	// Incluye la fecha  si no es anterior a desde (desde inclusivo) y,
+    // o el periodo sigue abierto (hasta == null), o el momento es anterior a hasta
+    // (hasta exclusivo). El chequeo de null va primero para no llamar
+    // isBefore(null), que lanzaría NullPointerException.
+	public boolean incluye(LocalDateTime fechaHora) {
+	
+		
+        if(!fechaHora.isBefore(desde) && (hasta==null || fechaHora.isBefore(hasta) )){
+			return true;
+		}
+		return false;
+    }
+
 	//------Getters-----------
 	
 	public LocalDateTime getDesde() {
@@ -40,5 +55,11 @@ public class PeriodoDeInactividad {
 	public LocalDateTime getHasta() {
 		return hasta;
 	}
+
+
+
+
+
+    
 	
 }

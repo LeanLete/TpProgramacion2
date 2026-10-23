@@ -1,6 +1,7 @@
 package ar.edu.ungs.prog2.smartgrids;
 
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -285,8 +286,14 @@ public class SmartGrids implements ISmartGrids {
 
 	@Override
 	public List<String> plantasInactivasEn(String fechaHora) {
-		// TODO Auto-generated method stub
-		return null;
+		ArrayList<String> plantasInactivas=new ArrayList<>();
+		LocalDateTime fecha=LocalDateTime.parse(fechaHora);
+		for (Planta p : plantas.values()) {
+			if(p.estuvoInactivaEn(fecha)){
+					plantasInactivas.add(p.getNombre());
+			}
+		}
+		return plantasInactivas;
 	}
 
 }

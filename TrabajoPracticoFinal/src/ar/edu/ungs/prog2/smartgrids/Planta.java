@@ -253,6 +253,18 @@ public abstract  class Planta {
 
 	}
 
+
+	public boolean estuvoInactivaEn(LocalDateTime fechaHora){
+
+		for (PeriodoDeInactividad i : historialDeInactividad) {
+			if(i.incluye(fechaHora)){
+				return true;
+			}
+		}
+		return false;
+		
+	}
+
 	@Override
 	public String toString() {
 		StringBuilder sb = new StringBuilder();
